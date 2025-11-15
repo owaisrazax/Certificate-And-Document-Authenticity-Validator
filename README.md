@@ -4,7 +4,7 @@ This is a web app I built using Flask and Python to create and verify digital ce
 The main idea is to tackle the problem of fake certificates. This app embeds a secure, invisible watermark (a hash) directly into the certificate image. 
 It then stores this hash in a database. If someone wants to check if a certificate is real, they just upload it, and the app will check if the watermark is valid and exists in our records.
 
-## 🚀 How It Works
+##  How It Works
 
 It's a simple two-part system:
 
