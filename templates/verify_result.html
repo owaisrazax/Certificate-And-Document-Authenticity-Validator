@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right top, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            width: 100%;
+            max-width: 600px;
+        }
+        .result-box {
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            /* Frosted glass effect for the result boxes */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .result-box.valid {
+            background-color: rgba(230, 255, 237, 0.85); /* Light green tint */
+            border: 2px solid #28a745;
+        }
+        .result-box.invalid {
+            background-color: rgba(255, 230, 230, 0.85); /* Light red tint */
+            border: 2px solid #d9534f;
+        }
+        .result-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+        .result-title.valid {
+            color: #1e7e34; /* Darker green */
+        }
+        .result-title.invalid {
+            color: #d9534f;
+        }
+        .result-box p {
+            font-size: 1.1em;
+            color: #333;
+        }
+        .result-details {
+            text-align: left;
+            margin-top: 20px;
+            color: #333;
+        }
+        .result-details p {
+            font-size: 1.1em;
+            margin: 12px 0;
+            padding-left: 10px;
+            border-left: 3px solid #007bff;
+        }
+        .result-details strong {
+            display: inline-block;
+            width: 130px;
+            color: #000;
+            font-weight: 600;
+        }
+        .button-group a {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .button-group a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .button-group a.secondary {
+            background: #6c757d;
+        }
+        .button-group a.secondary:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        {% if verification_data.is_valid %}
+            <div class="result-box valid">
+                <h1 class="result-title valid">✅ Certificate is Valid</h1>
+                <p>This certificate is authentic and registered in our database.</p>
+                <div class="result-details">
+                    <p><strong>Student Name:</strong> {{ verification_data.student_name }}</p>
+                    <p><strong>Course Name:</strong> {{ verification_data.course_name }}</p>
+                    <p><strong>Issue Date:</strong> {{ verification_data.issue_date }}</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="result-box invalid">
+                <h1 class="result-title invalid">❌ Certificate is Invalid</h1>
+                <p>{{ verification_data.error }}</p>
+            </div>
+        {% endif %}
+        
+        <div class="button-group">
+            <a href="/verify">Verify Another</a>
+            <a href="/" class="secondary">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
