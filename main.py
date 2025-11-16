@@ -43,13 +43,11 @@ def allowed_file(filename):
 
 
 def string_to_binary(data):
-    """Convert string to binary representation."""
     binary = ''.join(format(ord(char), '08b') for char in data)
     return binary
 
 
 def binary_to_string(binary):
-    """Convert binary back to string."""
     result = ""
     for i in range(0, len(binary), 8):
         byte = binary[i:i+8]
